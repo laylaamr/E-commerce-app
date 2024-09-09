@@ -21,16 +21,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: CustomScrollView(
         slivers: [
-          const CustomSearchBar(),
-          const BannerListView(),
-          const SectionHeader(
+          CustomSearchBar(),
+          BannerListView(),
+          SectionHeader(
             title: 'Category',
             seeMore: 'See More',
           ),
-          const CategoryList(
+          CategoryList(
             categories: [
               {
                 "name": "All",
@@ -70,11 +70,11 @@ class HomeScreen extends StatelessWidget {
               },
             ],
           ),
-          const SectionHeader(
+          SectionHeader(
             title: 'Popular Products',
             seeMore: 'See More',
           ),
-          ProductGridView(productFuture: fetchProduct()),
+          ProductGridView(),
         ],
       ),
     );

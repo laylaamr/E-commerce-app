@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/product_model.dart';
 import '../../screens/detail_screen.dart';
+import '../../services/database_helper.dart';
 
 class ProductItem extends StatelessWidget {
   final List<ProductModel> products;
+
 
   const ProductItem({super.key, required this.products});
 
@@ -15,7 +18,7 @@ class ProductItem extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
-        mainAxisExtent: 300,
+        mainAxisExtent: 350,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -83,25 +86,56 @@ class ProductItem extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Add to cart action
-                            },
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: const Color(0xff67c3a6),
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width:100,
+                             height: 40,
+                             // clipBehavior: ,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Add to cart action
+                                },
+                                style: ElevatedButton.styleFrom(
+
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: const Color(0xff67c3a6),
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                                child: const Center(
+                                  child:  Text(
+                                    'Add to cart',
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ),
                               ),
                             ),
-                            child: const Text(
-                              'Add to cart',
-                              style: TextStyle(fontSize: 14),
+
+                            Consumer<FavoritesProvider>(
+                              builder: (context, favoritesProvider, child) {
+                                bool isFavorite = favoritesProvider
+                                    .isFavorite(productModel.id);
+
+                                return IconButton(
+                                  onPressed: () {
+                                    favoritesProvider
+                                        .toggleFavorite(productModel.id);
+                                  },
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    color: isFavorite
+                                        ? Colors.red
+                                        : Colors.grey,
+                                   // size: 25,
+                                  ),
+                                );
+                              },
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),

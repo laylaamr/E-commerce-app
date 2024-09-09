@@ -9,7 +9,7 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
         leading: IconButton(
-        icon: Icon(
+        icon: const Icon(
         Icons.arrow_back_rounded,
         size: 25,
     ),
