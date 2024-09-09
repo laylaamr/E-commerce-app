@@ -15,7 +15,7 @@ class ProductItem extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
-        mainAxisExtent: 300,
+        mainAxisExtent: 350,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {

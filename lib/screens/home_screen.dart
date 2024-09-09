@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
             title: 'Popular Products',
             seeMore: 'See More',
           ),
-          ProductGridView(productFuture: fetchProduct()),
+          ProductGridView(),
         ],
       ),
     );
