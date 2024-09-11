@@ -10,8 +10,9 @@ void main() async {
 
   final favoritesProvider = FavoritesProvider();
   await favoritesProvider.initFavorites();
-final cartsProvider =CartProvider();
-await cartsProvider.initCart();
+  final cartsProvider = CartProvider();
+  await cartsProvider.initCart();
+
   runApp(
     MultiProvider(
       providers: [
@@ -35,14 +36,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'shopify',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
+    return SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'shopify',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        home: const MainScreen(),
       ),
-      home: const MainScreen(),
     );
   }
 }

@@ -31,4 +31,5 @@ class ProductProvider extends ChangeNotifier{
   List<ProductModel> getCartProducts(List<int> cartIds) {
     return products.where((product) => cartIds.contains(product.id)).toList();
   }
+
 }

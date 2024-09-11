@@ -4,8 +4,10 @@ import 'package:sqflite/sqflite.dart';
 
 class CartProvider with ChangeNotifier {
   List<int> _cartProductIds = [];
+  Map<int, int> _productCounters = {}; // Store counter for each product
 
   List<int> get cartProductIds => _cartProductIds;
+  int getProductCounter(int productId) => _productCounters[productId] ?? 1;
 
   Database? _db;
 
@@ -14,7 +16,7 @@ class CartProvider with ChangeNotifier {
       join(await getDatabasesPath(), 'cart.db'),
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE cart(id INTEGER PRIMARY KEY)',
+          'CREATE TABLE cart(id INTEGER PRIMARY KEY, counter INTEGER)',
         );
       },
       version: 1,
@@ -22,6 +24,9 @@ class CartProvider with ChangeNotifier {
 
     final List<Map<String, dynamic>> maps = await _db!.query('cart');
     _cartProductIds = List.generate(maps.length, (i) => maps[i]['id']);
+    for (var map in maps) {
+      _productCounters[map['id']] = map['counter'];
+    }
 
     notifyListeners();
   }
@@ -29,9 +34,10 @@ class CartProvider with ChangeNotifier {
   Future<void> addToCart(int productId) async {
     if (!_cartProductIds.contains(productId)) {
       _cartProductIds.add(productId);
+      _productCounters[productId] = 1; // Initialize the counter to 1
       await _db!.insert(
         'cart',
-        {'id': productId},
+        {'id': productId, 'counter': 1},
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
       notifyListeners();
@@ -40,6 +46,7 @@ class CartProvider with ChangeNotifier {
 
   Future<void> removeFromCart(int productId) async {
     _cartProductIds.remove(productId);
+    _productCounters.remove(productId); // Remove the counter as well
     await _db!.delete(
       'cart',
       where: 'id = ?',
@@ -48,15 +55,32 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleCart(int productId) async {
-    if (_cartProductIds.contains(productId)) {
-      await removeFromCart(productId);
-    } else {
-      await addToCart(productId);
+  Future<void> updateCounter(int productId, int newCounter) async {
+    _productCounters[productId] = newCounter;
+    await _db!.update(
+      'cart',
+      {'counter': newCounter},
+      where: 'id = ?',
+      whereArgs: [productId],
+    );
+    notifyListeners();
+  }
+
+  void inc(int productId) {
+    int currentCount = _productCounters[productId] ?? 1;
+    updateCounter(productId, currentCount + 1);
+    notifyListeners();
+  }
+
+  void dec(int productId) {
+    int currentCount = _productCounters[productId] ?? 1;
+    if (currentCount > 1) {
+      updateCounter(productId, currentCount - 1);
+      notifyListeners();
     }
   }
 
-  bool isInCart(int productId) {
-    return _cartProductIds.contains(productId);
+  int get totalItemCount {
+    return _productCounters.values.fold(0, (sum, count) => sum + count);
   }
 }
