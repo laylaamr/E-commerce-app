@@ -41,6 +41,7 @@ class FavoritesScreen extends StatelessWidget {
                           (context, index) {
                         final product = favoriteProducts[index];
                         return ProductItem(products: [product]);
+
                       },
                       childCount: favoriteProducts.length,
                     ),

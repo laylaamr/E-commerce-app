@@ -4,7 +4,7 @@ import 'package:untitled1/services/product_provider.dart';
 
 import '../../models/product_model.dart';
 import '../../screens/detail_screen.dart';
-import 'product_item.dart'; // Import the new grid widget
+import 'product_item.dart';
 
 class ProductGridView extends StatelessWidget {
 
