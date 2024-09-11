@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled1/services/database_helper.dart';
+import 'package:untitled1/services/cart_helper.dart';
+import 'package:untitled1/services/favourite_helper.dart';
 import 'package:untitled1/services/product_provider.dart';
 import 'screens/main_screen.dart';
 
@@ -9,7 +10,8 @@ void main() async {
 
   final favoritesProvider = FavoritesProvider();
   await favoritesProvider.initFavorites();
-
+final cartsProvider =CartProvider();
+await cartsProvider.initCart();
   runApp(
     MultiProvider(
       providers: [
@@ -18,6 +20,9 @@ void main() async {
         ),
         ChangeNotifierProvider.value(
           value: favoritesProvider,
+        ),
+        ChangeNotifierProvider.value(
+          value: cartsProvider,
         ),
       ],
       child: const MyApp(),

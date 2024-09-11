@@ -28,5 +28,7 @@ class ProductProvider extends ChangeNotifier{
   List<ProductModel> getFavoriteProducts(List<int> favoriteIds) {
     return products.where((product) => favoriteIds.contains(product.id)).toList();
   }
-
+  List<ProductModel> getCartProducts(List<int> cartIds) {
+    return products.where((product) => cartIds.contains(product.id)).toList();
+  }
 }

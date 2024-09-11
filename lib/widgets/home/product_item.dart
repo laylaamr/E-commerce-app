@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/services/cart_helper.dart';
 
 import '../../models/product_model.dart';
 import '../../screens/detail_screen.dart';
-import '../../services/database_helper.dart';
+import '../../services/favourite_helper.dart';
 
 class ProductItem extends StatelessWidget {
   final List<ProductModel> products;
@@ -18,7 +19,7 @@ class ProductItem extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
-        mainAxisExtent: 350,
+        mainAxisExtent: 400,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -66,16 +67,19 @@ class ProductItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          productModel.name,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width, // Full screen width
+                          child:
+                          Text(
+                            productModel.name,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
+                            softWrap: true,
+                            overflow: TextOverflow.clip,
+                          ),),
                         const SizedBox(height: 4),
                         Text(
                           '\$${productModel.price}',
@@ -93,25 +97,29 @@ class ProductItem extends StatelessWidget {
                               width:100,
                              height: 40,
                              // clipBehavior: ,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  // Add to cart action
-                                },
-                                style: ElevatedButton.styleFrom(
+                              child:Consumer<CartProvider>(
+                                builder: (context,cartProvider,child){
+                                  return ElevatedButton(
+                                    onPressed: () {
+                                    cartProvider.addToCart(productModel.id);
+                                    },
+                                    style: ElevatedButton.styleFrom(
 
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: const Color(0xff67c3a6),
-                                  padding: const EdgeInsets.symmetric(vertical: 12),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                child: const Center(
-                                  child:  Text(
-                                    'Add to cart',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ),
+                                      foregroundColor: Colors.white,
+                                      backgroundColor: const Color(0xff67c3a6),
+                                      padding: const EdgeInsets.symmetric(vertical: 12),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child:  Text(
+                                        'Add to cart',
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                    ),
+                                  );
+                                }
                               ),
                             ),
 

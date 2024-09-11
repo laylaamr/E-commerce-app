@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled1/screens/cart_screen.dart';
 
 class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String deliveryAddress;
@@ -53,7 +54,14 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
                 IconButton(
                   icon: const Icon(CupertinoIcons.cart,
                       size: 28, color: Colors.black87),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CartScreen(),
+                      ),
+                    );
+                  },
                 ),
                 IconButton(
                   icon: const Icon(CupertinoIcons.bell,

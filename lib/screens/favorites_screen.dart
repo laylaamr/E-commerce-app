@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/home/product_item.dart';
-import '../services/database_helper.dart';
+import '../services/favourite_helper.dart';
 import '../services/product_provider.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class FavoritesScreen extends StatelessWidget {
         return Consumer<ProductProvider>(
           builder: (context, productProvider, child) {
             if (productProvider.isLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const SliverToBoxAdapter(child:  Center(child: CircularProgressIndicator()));
             } else if (productProvider.errorMessage != null) {
 
               return SliverToBoxAdapter(child: Center(child: Text('Error: ${productProvider.errorMessage}')));
@@ -30,22 +30,7 @@ class FavoritesScreen extends StatelessWidget {
 
               return CustomScrollView(
                 slivers: [
-                  SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      mainAxisExtent: 350,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                        final product = favoriteProducts[index];
-                        return ProductItem(products: [product]);
-
-                      },
-                      childCount: favoriteProducts.length,
-                    ),
-                  ),
+                ProductItem(products: favoriteProducts)
                 ],
               );
             }

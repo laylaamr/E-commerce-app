@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/screens/profile_screen.dart';
 
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/home/app_bar_widget.dart';
@@ -20,7 +21,7 @@ class MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const FavoritesScreen(),
     const HomeScreen(),
-    const FavoritesScreen(),
+    const ProfileScreen(),
   ];
   void _onTabTapped(int index) {
     setState(() {
