@@ -5,10 +5,10 @@ import 'package:untitled1/services/product_provider.dart';
 import 'screens/main_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure that Flutter is initialized
+  WidgetsFlutterBinding.ensureInitialized();
 
   final favoritesProvider = FavoritesProvider();
-  await favoritesProvider.initFavorites(); // Initialize favorites
+  await favoritesProvider.initFavorites();
 
   runApp(
     MultiProvider(
