@@ -1,6 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:path/path.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:untitled1/services/product_provider.dart';
+
+import '../models/product_model.dart';
 
 class CartProvider with ChangeNotifier {
   List<int> _cartProductIds = [];
@@ -10,6 +15,26 @@ class CartProvider with ChangeNotifier {
   int getProductCounter(int productId) => _productCounters[productId] ?? 1;
 
   Database? _db;
+  double getProductPrice(int productId, ProductProvider productProvider) {
+    final product = productProvider.products.firstWhere(
+          (prod) => prod.id == productId,
+      // orElse: () => ProductModel(id: productId, price: 0.0, title: ''), // Default value
+    );
+    return product.price;
+  }
+
+
+  double totalPrice(BuildContext context) {
+    double total = 0.0;
+    final productProvider = Provider.of<ProductProvider>(context, listen: false);
+
+    for (int productId in _cartProductIds) {
+      int quantity = _productCounters[productId] ?? 0;
+      double price = getProductPrice(productId, productProvider);
+      total += price * quantity;
+    }
+    return total;
+  }
 
   Future<void> initCart() async {
     _db = await openDatabase(
@@ -46,7 +71,7 @@ class CartProvider with ChangeNotifier {
 
   Future<void> removeFromCart(int productId) async {
     _cartProductIds.remove(productId);
-    _productCounters.remove(productId); // Remove the counter as well
+    _productCounters.remove(productId);
     await _db!.delete(
       'cart',
       where: 'id = ?',
@@ -74,13 +99,21 @@ class CartProvider with ChangeNotifier {
 
   void dec(int productId) {
     int currentCount = _productCounters[productId] ?? 1;
+
     if (currentCount > 1) {
       updateCounter(productId, currentCount - 1);
       notifyListeners();
     }
   }
 
+  Future<void> removeItem(int productId) async {
+
+    await removeFromCart(productId);
+    notifyListeners();
+  }
+
   int get totalItemCount {
     return _productCounters.values.fold(0, (sum, count) => sum + count);
   }
 }
+

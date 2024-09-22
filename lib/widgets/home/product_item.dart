@@ -68,7 +68,7 @@ class ProductItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width, // Full screen width
+                          width: MediaQuery.of(context).size.width,
                           child:
                           Text(
                             productModel.title,

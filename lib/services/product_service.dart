@@ -6,18 +6,12 @@ class ProductService {
   ProductService(this.dio);
   final baseUrl = 'https://fakestoreapi.com/products';
 
-  get kLang => null;
+
 
   Future<Response> fetchProducts() async {
-
-      final response = await dio.get(baseUrl,
-      options: Options(
-        headers: {
-            'lang': 'en',
-
-          })
-      );
-      return response.data;
-
-    }
+    final response = await dio.get(
+      baseUrl,
+    );
+    return response;
+  }
   }
