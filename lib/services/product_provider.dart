@@ -14,7 +14,7 @@ class ProductProvider extends ChangeNotifier{
  try{
    final result = await ProductService(Dio()).fetchProducts();
 
-   for(var item in result["data"]["data"] ){
+   for(var item in result.data){
      products.add(ProductModel.fromJson(item));
    }
  }

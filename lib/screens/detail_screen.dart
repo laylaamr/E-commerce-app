@@ -30,7 +30,7 @@ class DetailScreen extends StatelessWidget {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width, // Full screen width
                     child: Text(
-                      productModel.name,
+                      productModel.title,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

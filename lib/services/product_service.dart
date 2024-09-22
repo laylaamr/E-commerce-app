@@ -4,12 +4,12 @@ class ProductService {
   final Dio dio;
 
   ProductService(this.dio);
-  final baseUrl = 'https://student.valuxapps.com/api/products';
+  final baseUrl = 'https://fakestoreapi.com/products';
 
   get kLang => null;
 
-  Future<Map<String, dynamic>> fetchProducts() async {
-    try {
+  Future<Response> fetchProducts() async {
+
       final response = await dio.get(baseUrl,
       options: Options(
         headers: {
@@ -18,8 +18,6 @@ class ProductService {
           })
       );
       return response.data;
-    } catch (e) {
-      return {};
-      };
+
     }
   }

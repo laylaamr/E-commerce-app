@@ -71,7 +71,7 @@ class ProductItem extends StatelessWidget {
                           width: MediaQuery.of(context).size.width, // Full screen width
                           child:
                           Text(
-                            productModel.name,
+                            productModel.title,
                             style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,

@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        productModel.name,
+                        productModel.title,
                         style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,

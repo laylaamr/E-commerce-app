@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 class CartProvider with ChangeNotifier {
   List<int> _cartProductIds = [];
-  Map<int, int> _productCounters = {}; // Store counter for each product
+  Map<int, int> _productCounters = {};
 
   List<int> get cartProductIds => _cartProductIds;
   int getProductCounter(int productId) => _productCounters[productId] ?? 1;
