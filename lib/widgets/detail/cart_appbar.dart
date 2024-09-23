@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../screens/cart_screen.dart';
+
 import '../../services/cart_helper.dart';
-class AppBarWidget extends StatelessWidget {
-   AppBarWidget({super.key, required this.title});
-String title;
+class CartAppBarWidget extends StatelessWidget {
+  CartAppBarWidget({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ String title;
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           IconButton(
             icon: const Icon(
@@ -27,17 +27,18 @@ String title;
               Navigator.pop(context);
             },
           ),
-         Text(
-           title,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+         const SizedBox(width: 10,),
+         const Text(
+           "Your Cart",
+            style:  TextStyle(
+              fontSize: 20,
 
+              color: Colors.black,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(width: 180,),
           Consumer<CartProvider>( builder: (context, cartProvider, child){
 
             return Stack(
@@ -45,10 +46,7 @@ String title;
                 IconButton(
                   icon: const Icon( CupertinoIcons.cart,
                       size: 28, color: Colors.black87), onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CartScreen(),)
-                  );
+
                 },
                 ),
                 Positioned(

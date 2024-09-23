@@ -15,13 +15,11 @@ class DetailScreen extends StatelessWidget {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 100),
+            padding: const EdgeInsets.only(bottom: 100), // Adjust for the button height
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppBarWidget(
-                  title: 'Details product',
-                ),
+               AppBarWidget(title: 'Details product',),
                 SizedBox(
                   height: 500,
                   width: double.infinity,
@@ -30,8 +28,7 @@ class DetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 20),
                   child: SizedBox(
-                    width:
-                        MediaQuery.of(context).size.width, // Full screen width
+                    width: MediaQuery.of(context).size.width, // Full screen width
                     child: Text(
                       productModel.name,
                       style: const TextStyle(
@@ -61,8 +58,7 @@ class DetailScreen extends StatelessWidget {
                       ),
                       Consumer<FavoritesProvider>(
                         builder: (context, favoritesProvider, child) {
-                          bool isFavorite =
-                              favoritesProvider.isFavorite(productModel.id);
+                          bool isFavorite = favoritesProvider.isFavorite(productModel.id);
 
                           return IconButton(
                             onPressed: () {
