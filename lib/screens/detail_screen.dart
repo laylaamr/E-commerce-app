@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/models/product_model.dart';
 
+import '../services/cart_helper.dart';
 import '../services/favourite_helper.dart';
 import '../widgets/detail/app_bar.dart';
+import 'package:rate/rate.dart';
 
 class DetailScreen extends StatelessWidget {
   final ProductModel productModel;
@@ -15,11 +17,12 @@ class DetailScreen extends StatelessWidget {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 100), // Adjust for the button height
+            padding: const EdgeInsets.only(bottom: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-               AppBarWidget(title: 'Details product',),
+                AppBarWidget(title: 'Details product',),
                 SizedBox(
                   height: 500,
                   width: double.infinity,
@@ -28,17 +31,36 @@ class DetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 20),
                   child: SizedBox(
-                    width: MediaQuery.of(context).size.width, // Full screen width
+                    width: MediaQuery.of(context).size.width,
                     child: Text(
-                      productModel.name,
+                      productModel.title,
                       style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+
                         color: Colors.black,
                       ),
                       softWrap: true,
                       overflow: TextOverflow.clip,
                     ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    children: [
+                      Rate(
+                        iconSize: 30,
+                        color: Color(0xFFFFAD33),
+                        allowHalf: true,
+                        allowClear: true,
+                        initialValue: productModel.rating,
+                        readOnly: false,
+                        // onChange: (value) => print(value),
+                      ),
+                      SizedBox(width: 20,),
+                      Text("(${productModel.ratingCount} Reviewer)",style: TextStyle(fontSize: 16,color: Colors.grey),)
+                    ],
                   ),
                 ),
                 Padding(
@@ -50,7 +72,7 @@ class DetailScreen extends StatelessWidget {
                         "Price: ${productModel.price.toString()}\$",
                         style: const TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w600,
+
                           color: Colors.black,
                         ),
                         softWrap: true,
@@ -65,7 +87,7 @@ class DetailScreen extends StatelessWidget {
                               favoritesProvider.toggleFavorite(productModel.id);
                             },
                             icon: Icon(
-                              Icons.favorite,
+                              Icons.favorite,size: 30,
                               color: isFavorite ? Colors.red : Colors.grey,
                             ),
                           );
@@ -74,13 +96,14 @@ class DetailScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+
                 const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    "Description of product:",
+                    "Description of product",
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      // fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
                   ),
@@ -102,29 +125,32 @@ class DetailScreen extends StatelessWidget {
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Add to cart action
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color(0xff67c3a6),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Add to cart',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
+                child: Consumer<CartProvider>(
+                    builder: (context,cartProvider,child){
+                      return ElevatedButton(
+                        onPressed: () {
+                          cartProvider.addToCart(productModel.id);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: const Color(0xff67c3a6),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Add to cart',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      );
+                    }
                 ),
               ),
             ),
-          ),
-        ],
+          )],
       ),
     );
   }

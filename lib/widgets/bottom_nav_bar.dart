@@ -40,11 +40,11 @@ class CustomBottomNavBar extends StatelessWidget {
               title: const Text("Home"),
               selectedColor: kPrimaryColor,
             ),
-            SalomonBottomBarItem(
-              icon: const Icon(CupertinoIcons.circle_grid_hex_fill),
-              title: const Text("Categories"),
-              selectedColor: kPrimaryColor,
-            ),
+            // SalomonBottomBarItem(
+            //   icon: const Icon(CupertinoIcons.circle_grid_hex_fill),
+            //   title: const Text("Categories"),
+            //   selectedColor: kPrimaryColor,
+            // ),
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.heart),
               title: const Text("Likes"),
