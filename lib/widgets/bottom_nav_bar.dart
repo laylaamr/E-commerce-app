@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../utils/constants.dart';
+
 class CustomBottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTabTapped;
@@ -36,22 +38,27 @@ class CustomBottomNavBar extends StatelessWidget {
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.home),
               title: const Text("Home"),
-              selectedColor: const Color(0xff67c3a6),
+              selectedColor: kPrimaryColor,
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(CupertinoIcons.circle_grid_hex_fill),
+              title: const Text("Categories"),
+              selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.heart),
               title: const Text("Likes"),
-              selectedColor: const Color(0xff67c3a6),
+              selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.cart),
               title: const Text("Cart"),
-              selectedColor: const Color(0xff67c3a6),
+              selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.person),
               title: const Text("Profile"),
-              selectedColor: const Color(0xff67c3a6),
+              selectedColor: kPrimaryColor,
             ),
           ],
         ),

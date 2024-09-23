@@ -5,10 +5,10 @@ import 'package:untitled1/services/cart_helper.dart';
 import '../../models/product_model.dart';
 import '../../screens/detail_screen.dart';
 import '../../services/favourite_helper.dart';
+import '../../utils/constants.dart';
 
 class ProductItem extends StatelessWidget {
   final List<ProductModel> products;
-
 
   const ProductItem({super.key, required this.products});
 
@@ -68,9 +68,8 @@ class ProductItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width, // Full screen width
-                          child:
-                          Text(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
                             productModel.name,
                             style: const TextStyle(
                               fontSize: 13,
@@ -79,7 +78,8 @@ class ProductItem extends StatelessWidget {
                             ),
                             softWrap: true,
                             overflow: TextOverflow.clip,
-                          ),),
+                          ),
+                        ),
                         const SizedBox(height: 4),
                         Text(
                           '\$${productModel.price}',
@@ -94,35 +94,33 @@ class ProductItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width:100,
-                             height: 40,
-                             // clipBehavior: ,
-                              child:Consumer<CartProvider>(
-                                builder: (context,cartProvider,child){
-                                  return ElevatedButton(
-                                    onPressed: () {
+                              width: 100,
+                              height: 40,
+                              // clipBehavior: ,
+                              child: Consumer<CartProvider>(
+                                  builder: (context, cartProvider, child) {
+                                return ElevatedButton(
+                                  onPressed: () {
                                     cartProvider.addToCart(productModel.id);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-
-                                      foregroundColor: Colors.white,
-                                      backgroundColor: const Color(0xff67c3a6),
-                                      padding: const EdgeInsets.symmetric(vertical: 12),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(6),
-                                      ),
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: kPrimaryColor,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6),
                                     ),
-                                    child: const Center(
-                                      child:  Text(
-                                        'Add to cart',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'Add to cart',
+                                      style: TextStyle(fontSize: 14),
                                     ),
-                                  );
-                                }
-                              ),
+                                  ),
+                                );
+                              }),
                             ),
-
                             Consumer<FavoritesProvider>(
                               builder: (context, favoritesProvider, child) {
                                 bool isFavorite = favoritesProvider
@@ -135,10 +133,9 @@ class ProductItem extends StatelessWidget {
                                   },
                                   icon: Icon(
                                     Icons.favorite,
-                                    color: isFavorite
-                                        ? Colors.red
-                                        : Colors.grey,
-                                   // size: 25,
+                                    color:
+                                        isFavorite ? Colors.red : Colors.grey,
+                                    // size: 25,
                                   ),
                                 );
                               },

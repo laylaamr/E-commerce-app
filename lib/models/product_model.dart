@@ -23,23 +23,23 @@ class ProductModel {
     );
   }
 
-Map<String, dynamic> toMap() {
-  return {
-    'id': id,
-    'name': name,
-    'image': image,
-    'description': description,
-    'price': price,
-  };
-}
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'image': image,
+      'description': description,
+      'price': price,
+    };
+  }
 
-factory ProductModel.fromMap(Map<String, dynamic> map) {
-return ProductModel(
-id: map['id'],
-  name: map['name'],
-image: map['image'],
-  description: map['description'],
-  price: map['price'],
-);
-}
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    return ProductModel(
+      id: map['id'],
+      name: map['name'],
+      image: map['image'],
+      description: map['description'],
+      price: map['price'],
+    );
+  }
 }

@@ -11,15 +11,12 @@ class ProductService {
   Future<Map<String, dynamic>> fetchProducts() async {
     try {
       final response = await dio.get(baseUrl,
-      options: Options(
-        headers: {
+          options: Options(headers: {
             'lang': 'en',
-
-          })
-      );
+          }));
       return response.data;
     } catch (e) {
       return {};
-      };
     }
   }
+}

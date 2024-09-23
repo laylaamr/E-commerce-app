@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 class CartProvider with ChangeNotifier {
   List<int> _cartProductIds = [];
-  Map<int, int> _productCounters = {}; // Store counter for each product
+  final Map<int, int> _productCounters = {};
 
   List<int> get cartProductIds => _cartProductIds;
   int getProductCounter(int productId) => _productCounters[productId] ?? 1;
@@ -34,7 +34,7 @@ class CartProvider with ChangeNotifier {
   Future<void> addToCart(int productId) async {
     if (!_cartProductIds.contains(productId)) {
       _cartProductIds.add(productId);
-      _productCounters[productId] = 1; // Initialize the counter to 1
+      _productCounters[productId] = 1;
       await _db!.insert(
         'cart',
         {'id': productId, 'counter': 1},
@@ -46,7 +46,7 @@ class CartProvider with ChangeNotifier {
 
   Future<void> removeFromCart(int productId) async {
     _cartProductIds.remove(productId);
-    _productCounters.remove(productId); // Remove the counter as well
+    _productCounters.remove(productId);
     await _db!.delete(
       'cart',
       where: 'id = ?',

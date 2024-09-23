@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants.dart';
+
 class CategoryList extends StatelessWidget {
   final List<Map<String, String>> categories;
   const CategoryList({super.key, required this.categories});
@@ -23,7 +25,7 @@ class CategoryList extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: const Color(0xff67c3a6).withOpacity(0.2),
+                        color: kPrimaryColor.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Image.asset(categories[index]["image"]!),

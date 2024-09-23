@@ -6,30 +6,36 @@ class BannerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 150,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Container(
-                width: 275,
-                margin: const EdgeInsets.only(left: 16),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'assets/banners_images/banner${index + 1}.png'),
-                    fit: BoxFit.contain,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            );
-          },
-          itemCount: 3,
-          scrollDirection: Axis.horizontal,
+        child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        image: const DecorationImage(
+          image: AssetImage('assets/banners_images/banner1.png'),
+          fit: BoxFit.fill,
         ),
       ),
-    );
+      height: 150,
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Welcome to our store',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            'Get the best products at the best prices',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 }

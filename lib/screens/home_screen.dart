@@ -48,26 +48,6 @@ class HomeScreen extends StatelessWidget {
                 "name": "Sport",
                 "image": "assets/category_images/category4.png"
               },
-              {
-                "name": "Electronic",
-                "image": "assets/category_images/category5.png"
-              },
-              {
-                "name": "Apparel",
-                "image": "assets/category_images/category2.png"
-              },
-              {
-                "name": "School",
-                "image": "assets/category_images/category3.png"
-              },
-              {
-                "name": "Sport",
-                "image": "assets/category_images/category4.png"
-              },
-              {
-                "name": "Electronic",
-                "image": "assets/category_images/category5.png"
-              },
             ],
           ),
           SectionHeader(

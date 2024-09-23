@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/providers/product_provider.dart';
 import 'package:untitled1/services/cart_helper.dart';
 import 'package:untitled1/services/favourite_helper.dart';
-import 'package:untitled1/services/product_provider.dart';
-import 'screens/main_screen.dart';
+
+import 'screens/splash_screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +38,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+    );
+
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -44,7 +51,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
         ),
-        home: const MainScreen(),
+        home: const SplashScreen(),
       ),
     );
   }
