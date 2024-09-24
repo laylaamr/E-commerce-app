@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/screens/profile_screen.dart';
+import 'package:untitled1/screens/history_screen.dart';
 
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/home/app_bar_widget.dart';
@@ -20,7 +21,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const FavoritesScreen(),
-    const HomeScreen(),
+    const HistoryScreen(),
     const ProfileScreen(),
   ];
   void _onTabTapped(int index) {

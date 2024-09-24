@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/screens/payment_screen.dart';
 import 'package:untitled1/services/cart_helper.dart';
 import 'package:untitled1/providers/product_provider.dart';
 import 'package:untitled1/widgets/product_card.dart';
@@ -15,7 +16,7 @@ class CartScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              CartAppBarWidget(),
+              CartAppBarWidget(title: "Your cart",),
               const SizedBox(height: 10),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16.0),
@@ -124,7 +125,10 @@ class CartScreen extends StatelessWidget {
                     color: Colors.white,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add your action for the button
+                        Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PaymentScreen(),)
+                        );
                       },
                       style: ElevatedButton.styleFrom(
 

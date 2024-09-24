@@ -51,8 +51,8 @@ class CustomBottomNavBar extends StatelessWidget {
               selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(CupertinoIcons.cart),
-              title: const Text("Cart"),
+              icon: const Icon(CupertinoIcons.doc_text),
+              title: const Text("History"),
               selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
