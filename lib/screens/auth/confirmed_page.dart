@@ -52,8 +52,6 @@ class ConfirmedPage extends StatelessWidget {
                       (route) => false,
                     );
                   },
-                  height: 50,
-                  fontSize: 20,
                   backgroundColor: kPrimaryColor,
                   textColor: Colors.white,
                   label: buttonText,

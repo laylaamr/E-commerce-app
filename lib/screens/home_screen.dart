@@ -6,7 +6,6 @@ import '../services/product_service.dart';
 import '../widgets/home/banner_list_view.dart';
 import '../widgets/home/categroy_list.dart';
 import '../widgets/home/product_grid_view.dart';
-import '../widgets/home/search_bar.dart';
 import '../widgets/home/section_header.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     return const Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSearchBar(),
+          // CustomSearchBar(),
           BannerListView(),
           SectionHeader(
             title: 'Category',

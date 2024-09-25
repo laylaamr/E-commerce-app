@@ -14,30 +14,21 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => AuthProvider(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          scrolledUnderElevation: 0,
-          title: Align(
-            alignment: Alignment.centerLeft,
-            child: Image.asset(
-              "assets/onboarding_images/quickmart.png",
-              height: 50,
+      child: const Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LoginHeader(),
+                LoginForm(),
+                LoginFooter(),
+              ],
             ),
           ),
         ),
-        body: const SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LoginHeader(),
-              LoginForm(),
-              LoginFooter(),
-            ],
-          ),
-        ),
-        bottomNavigationBar: const Padding(
+        bottomNavigationBar: Padding(
           padding: EdgeInsets.all(12.0),
           child: TermsAndConditions(),
         ),

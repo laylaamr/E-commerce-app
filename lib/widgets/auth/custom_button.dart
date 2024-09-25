@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants.dart';
+
 class CustomButton extends StatelessWidget {
-  final double height;
-  final double fontSize;
   final Color backgroundColor;
   final Color textColor;
   final String? label;
@@ -10,8 +10,6 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton({
     super.key,
-    required this.height,
-    required this.fontSize,
     required this.backgroundColor,
     required this.textColor,
     required this.label,
@@ -23,19 +21,20 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         elevation: 0,
+        shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
-        minimumSize: Size(double.infinity, height),
+        minimumSize: const Size(double.infinity, 50),
         backgroundColor: backgroundColor,
-        padding: EdgeInsets.symmetric(vertical: height / 3),
+        padding: const EdgeInsets.symmetric(vertical: 15),
       ),
       onPressed: onTap,
       child: Text(
         label ?? '',
         style: TextStyle(
           color: textColor,
-          fontSize: fontSize,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
       ),

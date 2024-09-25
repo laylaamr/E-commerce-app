@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/providers/product_provider.dart';
 import 'package:untitled1/services/cart_helper.dart';
 import 'package:untitled1/services/favourite_helper.dart';
 
 import 'screens/splash_screen/splash_screen.dart';
+import 'utils/constants.dart';
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+
   WidgetsFlutterBinding.ensureInitialized();
 
   final favoritesProvider = FavoritesProvider();
@@ -38,21 +47,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarIconBrightness: Brightness.dark,
-    );
-
-    return SafeArea(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'shopify',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-        home: const SplashScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'online shop',
+      theme: ThemeData(
+        textTheme: GoogleFonts.spaceGroteskTextTheme(),
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
+        useMaterial3: true,
       ),
+      home: const SplashScreen(),
     );
   }
 }

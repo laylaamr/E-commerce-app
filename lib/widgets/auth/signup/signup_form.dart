@@ -82,8 +82,6 @@ class SignupForm extends StatelessWidget {
                 }
               },
               label: 'Create Account',
-              height: 50,
-              fontSize: 20,
               backgroundColor: Colors.black,
               textColor: Colors.white,
             ),

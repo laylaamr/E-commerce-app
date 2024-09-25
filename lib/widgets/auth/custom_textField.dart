@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants.dart';
+
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
@@ -10,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     this.fillColor,
     required this.borderColor,
     this.validator,
+    this.controller,
   });
 
   final String label;
@@ -19,10 +22,12 @@ class CustomTextField extends StatelessWidget {
   final Color? fillColor;
   final Color borderColor;
   final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
       style: const TextStyle(fontSize: 16.0),
@@ -36,19 +41,19 @@ class CustomTextField extends StatelessWidget {
         fillColor: fillColor ?? Colors.transparent,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor, width: 1.0),
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: borderColor, width: 1.0),
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red, width: 1.0),
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red, width: 2.0),
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         suffixIcon: icon,
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+import '../services/cart_helper.dart';
 import '../utils/constants.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -40,19 +42,59 @@ class CustomBottomNavBar extends StatelessWidget {
               title: const Text("Home"),
               selectedColor: kPrimaryColor,
             ),
-            // SalomonBottomBarItem(
-            //   icon: const Icon(CupertinoIcons.circle_grid_hex_fill),
-            //   title: const Text("Categories"),
-            //   selectedColor: kPrimaryColor,
-            // ),
             SalomonBottomBarItem(
               icon: const Icon(CupertinoIcons.heart),
               title: const Text("Likes"),
               selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(CupertinoIcons.doc_text),
-              title: const Text("History"),
+              icon: Consumer<CartProvider>(
+                builder: (context, cartProvider, child) {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      const Icon(
+                        CupertinoIcons.cart,
+                        size: 28,
+                        color: Colors.black87,
+                      ),
+                      if (cartProvider.totalItemCount > 0)
+                        Positioned(
+                          right: -5,
+                          top: -5,
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            width: 18,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 2,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${cartProvider.totalItemCount}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+              title: const Text("Cart"),
               selectedColor: kPrimaryColor,
             ),
             SalomonBottomBarItem(

@@ -38,7 +38,7 @@ class OnboardingProvider extends ChangeNotifier {
   }
 
   void navigateTo(BuildContext context, Widget screen) {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => screen),
     );
     notifyListeners();

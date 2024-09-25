@@ -33,8 +33,6 @@ class ForgetPasswordPage extends StatelessWidget {
             ),
             const SizedBox(height: 40.0),
             CustomButton(
-              height: 50.0,
-              fontSize: 20.0,
               backgroundColor: const Color(0xff99BA60),
               textColor: Colors.white,
               label: 'Send verification code',
