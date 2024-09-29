@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/utils/constants.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -15,7 +16,7 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -23,15 +24,16 @@ class SectionHeader extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 20,
                 color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               seeMore,
               style: const TextStyle(
-                fontSize: 12,
-                color: Colors.black,
+                fontSize: 14,
+                color: kPrimaryColor,
               ),
             ),
           ],

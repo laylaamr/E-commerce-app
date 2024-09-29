@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/providers/category_provider.dart';
 import 'package:untitled1/providers/product_provider.dart';
 import 'package:untitled1/services/cart_helper.dart';
 import 'package:untitled1/services/favourite_helper.dart';
@@ -28,8 +29,9 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ProductProvider()..fetchProduct(),
-        ),
+            create: (_) => CategoryProvider()..fetchCategories()),
+        ChangeNotifierProvider(
+            create: (context) => ProductProvider()..fetchProducts()),
         ChangeNotifierProvider.value(
           value: favoritesProvider,
         ),

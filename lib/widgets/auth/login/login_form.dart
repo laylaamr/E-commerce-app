@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/screens/auth/forget_password_screen.dart';
 import 'package:untitled1/utils/constants.dart';
 import 'package:untitled1/widgets/auth/custom_button.dart';
 import 'package:untitled1/widgets/auth/custom_textField.dart';
@@ -30,9 +31,40 @@ class LoginForm extends StatelessWidget {
               borderColor: kPrimaryColor,
               label: 'Password',
               keyboardType: TextInputType.visiblePassword,
-              obscureText: true,
+              obscureText: !authProvider.isPasswordVisible,
+              icon: IconButton(
+                icon: Icon(
+                  authProvider.isPasswordVisible
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: const Color(0xff717171),
+                ),
+                onPressed: authProvider.togglePasswordVisibility,
+              ),
               controller: authProvider.passwordController,
               validator: authProvider.validatePassword,
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                style: ButtonStyle(
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return const ForgetPasswordScreen();
+                  }));
+                },
+                child: const Text(
+                  'Forgot Password?',
+                  style: TextStyle(color: kPrimaryColor),
+                ),
+              ),
             ),
             const SizedBox(height: 25.0),
             CustomButton(

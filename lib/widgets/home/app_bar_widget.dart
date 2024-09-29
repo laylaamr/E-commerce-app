@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled1/screens/cart_screen.dart';
+import 'package:untitled1/screens/cart/cart_screen.dart';
 import 'package:untitled1/services/cart_helper.dart';
 
 import '../../utils/constants.dart';
@@ -33,44 +33,8 @@ class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 50,
               child: Image.asset("assets/onboarding_images/quickmart.png"),
             ),
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     const Text(
-            //       "Delivery Address",
-            //       style: TextStyle(
-            //         fontSize: 10,
-            //         fontWeight: FontWeight.w500,
-            //         color: Colors.grey,
-            //       ),
-            //     ),
-            //     Text(
-            //       deliveryAddress,
-            //       style: const TextStyle(
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.w600,
-            //         color: Colors.black,
-            //       ),
-            //       maxLines: 1,
-            //       overflow: TextOverflow.ellipsis,
-            //     ),
-            //   ],
-            // ),
             Row(
               children: [
-                // IconButton(
-                //   icon: const Icon(CupertinoIcons.cart,
-                //       size: 28, color: Colors.black87),
-                //   onPressed: () {
-                //     Navigator.of(context).push(
-                //       MaterialPageRoute(
-                //         builder: (context) =>
-                //             CartScreen(),
-                //       ),
-                //     );
-                //   },
-                // ),
                 IconButton(
                   icon: const Icon(CupertinoIcons.search,
                       size: 28, color: Colors.black87),

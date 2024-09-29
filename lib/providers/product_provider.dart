@@ -6,18 +6,35 @@ import '../models/product_model.dart';
 
 class ProductProvider extends ChangeNotifier {
   bool isLoading = false;
-
   List<ProductModel> products = [];
+  List<ProductModel> productsByCategory = [];
   String? errorMessage;
-  Future fetchProduct() async {
+
+  Future<void> fetchProducts() async {
     isLoading = true;
     notifyListeners();
     try {
       final result = await ProductService(Dio()).fetchProducts();
+      products = (result.data as List)
+          .map((item) => ProductModel.fromJson(item))
+          .toList();
+    } catch (e) {
+      errorMessage = e.toString();
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
 
-      for (var item in result.data) {
-        products.add(ProductModel.fromJson(item));
-      }
+  Future<void> fetchProductsByCategory(String category) async {
+    isLoading = true;
+    notifyListeners();
+    try {
+      final result =
+          await ProductService(Dio()).fetchProductsByCategory(category);
+      productsByCategory = (result.data as List)
+          .map((item) => ProductModel.fromJson(item))
+          .toList();
     } catch (e) {
       errorMessage = e.toString();
     } finally {

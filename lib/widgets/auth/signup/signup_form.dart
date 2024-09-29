@@ -21,7 +21,7 @@ class SignupForm extends StatelessWidget {
           children: [
             CustomTextField(
               borderColor: kPrimaryColor,
-              label: 'Full name',
+              label: 'Username',
               keyboardType: TextInputType.name,
               validator: authProvider.validateName,
             ),
@@ -67,7 +67,7 @@ class SignupForm extends StatelessWidget {
             const SizedBox(height: 25.0),
             CustomButton(
               onTap: () {
-                if (authProvider.submitForm(context)) {
+                if (authProvider.submitForm()) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const ConfirmedPage(
