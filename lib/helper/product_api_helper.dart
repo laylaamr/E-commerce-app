@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class ProductService {
+class ProductApiHelper {
   final Dio dio;
 
-  ProductService(this.dio);
+  ProductApiHelper(this.dio);
   final baseUrl = 'https://fakestoreapi.com/products';
 
   Future<Response> fetchProducts() async {

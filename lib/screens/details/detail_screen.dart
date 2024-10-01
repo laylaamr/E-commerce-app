@@ -4,8 +4,8 @@ import 'package:rate/rate.dart';
 import 'package:untitled1/models/product_model.dart';
 import 'package:untitled1/utils/constants.dart';
 
-import '../../services/cart_helper.dart';
-import '../../services/favourite_helper.dart';
+import '../../helper/cart_helper.dart';
+import '../../helper/favourite_helper.dart';
 import '../../widgets/auth/custom_button.dart';
 import '../../widgets/detail/app_bar.dart';
 import '../cart/cart_screen.dart';

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/screens/cart/cart_screen.dart';
-import 'package:untitled1/services/cart_helper.dart';
 
+import '../../helper/cart_helper.dart';
 import '../../utils/constants.dart';
 
 class MyCupertinoAppBar extends StatelessWidget implements PreferredSizeWidget {

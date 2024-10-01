@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/providers/category_provider.dart';
 import 'package:untitled1/providers/product_provider.dart';
-import 'package:untitled1/services/cart_helper.dart';
-import 'package:untitled1/services/favourite_helper.dart';
 
+import 'helper/cart_helper.dart';
+import 'helper/favourite_helper.dart';
 import 'screens/splash_screen/splash_screen.dart';
 import 'utils/constants.dart';
 

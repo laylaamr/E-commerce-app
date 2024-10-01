@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:untitled1/services/product_service.dart';
 
+import '../helper/product_api_helper.dart';
 import '../models/product_model.dart';
 
 class ProductProvider extends ChangeNotifier {
@@ -14,7 +14,7 @@ class ProductProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     try {
-      final result = await ProductService(Dio()).fetchProducts();
+      final result = await ProductApiHelper(Dio()).fetchProducts();
       products = (result.data as List)
           .map((item) => ProductModel.fromJson(item))
           .toList();
@@ -31,7 +31,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
     try {
       final result =
-          await ProductService(Dio()).fetchProductsByCategory(category);
+          await ProductApiHelper(Dio()).fetchProductsByCategory(category);
       productsByCategory = (result.data as List)
           .map((item) => ProductModel.fromJson(item))
           .toList();
